@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let offsetX, offsetY, dragging = false;
 
-    
     inicioFluxo.addEventListener('mousedown', e => {
         if (e.button !== 0) return;
     

@@ -18,6 +18,8 @@ body.container {
     padding: 10px 20px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .title {
@@ -57,7 +59,7 @@ h1[contenteditable="true"] {
     /* Recuo do header */
     left: 20px;
     /* Recuo do lado esquerdo */
-    width: 315px;
+    width: 300px;
     height: calc(100% - 80px);
     /* Altura do viewport menos recuo superior e inferior */
     background-color: white;
@@ -99,7 +101,8 @@ h1[contenteditable="true"] {
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
+    font-family: "Open Sans", sans-serif;
     /* Adicione um espaço entre os botões */
 }
 
@@ -172,6 +175,14 @@ h1[contenteditable="true"] {
     /* Adicionar borda de contorno azul ao card ativo */
 }
 
+.icon-blue {
+    color: #244CC0;
+  }
+
+  .icon-orange {
+    color: #e67200;
+  }
+  
 
 /* Estilo para os ícones de zoom */
 .zoom-controls {
