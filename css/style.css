@@ -1,5 +1,3 @@
-
-
 /* Estilos globais */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
@@ -118,9 +116,9 @@ h1[contenteditable="true"] {
 
 
 /* Estilos para o card */
-.flow-card {
+.flow-card-start {
     width: 250px;
-    height: 100px;
+    height: 120px;
     background-color: white;
     border: 1px solid #ccc;
     padding: 16px;
@@ -170,19 +168,51 @@ h1[contenteditable="true"] {
 
 
 
-.flow-card.active {
+.fa-circle-play {
+    font-size: 40px;
+    /* Ajuste o tamanho conforme necessário */
+    color: #244CC0;
+    margin-left: 10px;
+
+}
+
+.flow-card-start.active {
     border-color: #2E59D9;
     /* Adicionar borda de contorno azul ao card ativo */
 }
 
+
+.flow-card-text {
+    margin-top: 15px;
+    margin-left: 10px;
+    font-family: "Open Sans";
+    font-size: 12px;
+
+
+}
+
+.card-title {
+
+    margin-left: 13px;
+}
+
+.card-group {
+    display: flex;
+    align-items: center;
+
+}
+
+
+.flow-pane {}
+
 .icon-blue {
     color: #244CC0;
-  }
+}
 
-  .icon-orange {
+.icon-orange {
     color: #e67200;
-  }
-  
+}
+
 
 /* Estilo para os ícones de zoom */
 .zoom-controls {

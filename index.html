@@ -10,7 +10,9 @@
 
 </head>
 
-<body class="container">
+<body class="container"></div>
+    
+ <div class="flow-pane"> 
 
     <div class="header">
         <div class="title">
@@ -20,6 +22,8 @@
             <button class="publish-button">Publicar</button>
         </div>
     </div>
+    
+ 
 
     <div class="zoom-controls">
         <button class="zoom-button zoom-in">
@@ -66,7 +70,7 @@
                 </button>
 
                 <button class="sidebar-button">
-                    <i class="fa-regular fa-note-sticky icon-blue"></i> Sticker
+                    <i class="fa-solid fa-list icon-blue"></i> Lista
                 </button>
 
 
@@ -128,18 +132,22 @@
 
             </div>
 
-        </div>
 
     </section>
     
-    <div class="page">
-        <!-- Área onde os cards aparecerão ao serem soltos -->
-      </div>
-      
-    <div id="inicio-fluxo" class="flow-card">Início</div>
-   
 
+
+        <div id="inicio-fluxo" class="flow-card-start">
+            <div class="card-group">
+            <i class="fa-regular fa-circle-play"></i> 
+            <span class="card-title">Início do Fluxo</span>
+            </div>
+            <div class="flow-card-text">Este é o início do fluxo de automação, ele pode ser iniciado através dos Gatilhos.</div>
+
+        </div>
+ </div>
+ 
+    
     <script src="js/main.js"></script>
 </body>
-
 </html>
