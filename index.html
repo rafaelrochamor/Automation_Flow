@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+
 </head>
 
-<body class="container"></div>
-    
- <div class="flow-pane"> 
+<body class="container">
+
 
     <div class="header">
         <div class="title">
@@ -22,8 +22,8 @@
             <button class="publish-button">Publicar</button>
         </div>
     </div>
-    
- 
+
+
 
     <div class="zoom-controls">
         <button class="zoom-button zoom-in">
@@ -34,6 +34,7 @@
         </button>
     </div>
 
+
     <section class="sidebar">
 
         <div class="box">
@@ -41,11 +42,12 @@
             <p class="titulo">Mensagem</p>
 
             <div class="botoes">
-                <button class="sidebar-button">
+
+                <button class="sidebar-button" draggable="true" onclick="toggleSelected(this)">
                     <i class="fas fa-font icon-blue"></i> Texto
                 </button>
 
-                <button class="sidebar-button">
+                <button class="sidebar-button" draggable="true" onclick="toggleSelected(this)">
                     <i class="fas fa-image icon-blue"></i> Imagem
                 </button>
 
@@ -134,20 +136,26 @@
 
 
     </section>
-    
 
 
+
+    <div class="cards-container">
+        <!-- Seus cards existentes aqui -->
         <div id="inicio-fluxo" class="flow-card-start">
             <div class="card-group">
-            <i class="fa-regular fa-circle-play"></i> 
-            <span class="card-title">Início do Fluxo</span>
+                <i class="fa-regular fa-circle-play"></i>
+                <span class="card-title">Início do Fluxo</span>
             </div>
-            <div class="flow-card-text">Este é o início do fluxo de automação, ele pode ser iniciado através dos Gatilhos.</div>
+            <div class="flow-card-text">
+                Este é o início do fluxo de automação, ele pode ser iniciado através dos Gatilhos.
+            </div>
 
         </div>
- </div>
- 
-    
+
+    </div>
+
+
     <script src="js/main.js"></script>
 </body>
+
 </html>

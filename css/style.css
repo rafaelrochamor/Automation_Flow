@@ -1,5 +1,5 @@
 /* Estilos globais */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;600&family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
 body.container {
     background-color: #dcdcdc8e;
@@ -101,8 +101,14 @@ h1[contenteditable="true"] {
     transition: background-color 0.3s;
     margin-bottom: 12px;
     font-family: "Open Sans", sans-serif;
+    transition: transform 0.3s;
     /* Adicione um espaço entre os botões */
 }
+
+.sidebar-button.selected {
+    position: absolute;
+  }
+  
 
 .sidebar-button i {
     margin-right: 10px;
@@ -115,7 +121,7 @@ h1[contenteditable="true"] {
 
 
 
-/* Estilos para o card */
+/* Estilos para o card inicial*/
 .flow-card-start {
     width: 250px;
     height: 120px;
@@ -150,7 +156,7 @@ h1[contenteditable="true"] {
     &::after {
         content: '';
         position: absolute;
-        top: 60%;
+        top: 80%;
         right: -8px;
         /* Posição do círculo à direita do card */
         transform: translateY(-50%);
@@ -166,6 +172,136 @@ h1[contenteditable="true"] {
 
 }
 
+/* Estilos para os card genéricos*/
+.flow-card {
+    width: 250px;
+    height: 120px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 16px;
+    cursor: grab;
+    position: fixed;
+    /* Altere para fixed para centralizar */
+    top: 35%;
+    /* Centralize verticalmente */
+    left: 45%;
+    /* Centralize horizontalmente */
+    border-radius: 10px;
+    /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Ajustar a sombra */
+    transition: border-color 0.3s;
+    /* Adicionar transição para suavizar a mudança de cor */
+    z-index: -1;
+    /* Defina uma camada abaixo dos outros elementos */
+    font-family: "Open Sans", sans-serif;
+    /* Adicione a fonte */
+    font-size: 16px;
+    /* Tamanho do texto */
+    color: #27272a;
+    /* Adicione a cor do texto */
+    font-weight: bold;
+    /* Adicione o negrito */
+
+     /* Adicione esta parte para o círculo azul */
+     &::after {
+        content: '';
+        position: absolute;
+        top: 80%;
+        right: -8px;
+        /* Posição do círculo à direita do card */
+        transform: translateY(-50%);
+        width: 15px;
+        height: 15px;
+        background-color: #2E59D9;
+        border-radius: 50%;
+        cursor: copy;
+        /* Adicione o cursor de ponteiro */
+        z-index: -1;
+        /* Defina uma camada abaixo dos outros elementos */
+    }
+
+}
+
+/* Estilos para o card de Envio de Texto*/
+.flow-card-sendtext {
+    width: 300px;
+    height: 180px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 16px;
+    cursor: grab;
+    position: fixed;
+    /* Altere para fixed para centralizar */
+    top: 35%;
+    /* Centralize verticalmente */
+    left: 45%;
+    /* Centralize horizontalmente */
+    border-radius: 10px;
+    /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Ajustar a sombra */
+    transition: border-color 0.3s;
+    /* Adicionar transição para suavizar a mudança de cor */
+    z-index: -1;
+    /* Defina uma camada abaixo dos outros elementos */
+    font-family: "Open Sans", sans-serif;
+    /* Adicione a fonte */
+    font-size: 16px;
+    /* Tamanho do texto */
+    color: #27272a;
+    /* Adicione a cor do texto */
+    font-weight: bold;
+    /* Adicione o negrito */
+
+     /* Adicione esta parte para o círculo azul */
+     &::after {
+        content: '';
+        position: absolute;
+        top: 80%;
+        right: -8px;
+        /* Posição do círculo à direita do card */
+        transform: translateY(-50%);
+        width: 15px;
+        height: 15px;
+        background-color: #2E59D9;
+        border-radius: 50%;
+        cursor: copy;
+        /* Adicione o cursor de ponteiro */
+        z-index: -1;
+        /* Defina uma camada abaixo dos outros elementos */
+    }
+
+}
+
+/* Ïcone de Interrogação ao lado do Nome do Card*/
+.question-icon {
+    font-size: 20px;
+    margin-left: auto; /* Move o ícone para a direita */
+    margin-right: 10px; /* Move o ícone para a esquerda */
+    color: rgb(82, 209, 51); /* Cor inicial do ícone (branco) */
+    cursor: pointer;
+    transition: color 0.3s; /* Adiciona uma transição suave na mudança de cor */
+}
+
+.question-icon:hover {
+    color: rgb(153, 207, 140); /* Cor do ícone ao passar o mouse por cima */
+}
+
+/* Estilo do ícone de lixeira */
+.delete-icon {
+    display: none; /* Oculta o ícone por padrão */
+}
+
+/* Estilo do card selecionado com ícone de lixeira visível */
+.flow-card-sendtext.active .delete-icon {
+    position: absolute;
+    top: -20px;
+    right: 10px;
+    color: red;
+    cursor: pointer;
+    display: block;
+}
 
 
 .fa-circle-play {
@@ -181,29 +317,42 @@ h1[contenteditable="true"] {
     /* Adicionar borda de contorno azul ao card ativo */
 }
 
+.flow-card-sendtext.active {
+    border-color: #2E59D9;
+    /* Adicionar borda de contorno azul ao card ativo */
+}
 
 .flow-card-text {
     margin-top: 15px;
-    margin-left: 10px;
-    font-family: "Open Sans";
+    margin-left: 9px;
+    font-family: "Montserrat", sans-serif;
     font-size: 12px;
-
-
+    line-height: 1.5;
+    
 }
 
 .card-title {
+    font-family: "Open Sans";
+    font-size: 16px;
+    position: relative; /* Adiciona posição relativa */
+}
 
-    margin-left: 13px;
+.card-subtitle{
+    color: #244CC0;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    display: block; /* Adiciona essa linha para torná-lo um bloco */
+   
+    
 }
 
 .card-group {
     display: flex;
     align-items: center;
-
+    flex-wrap: wrap;
+    gap: 8px;
+    
 }
-
-
-.flow-pane {}
 
 .icon-blue {
     color: #244CC0;
@@ -217,7 +366,7 @@ h1[contenteditable="true"] {
 /* Estilo para os ícones de zoom */
 .zoom-controls {
     position: fixed;
-    bottom: 550px;
+    top: 70px;
     right: 20px;
     display: flex;
     flex-direction: column;
@@ -243,3 +392,4 @@ h1[contenteditable="true"] {
     font-size: 20px;
     color: blue;
 }
+
