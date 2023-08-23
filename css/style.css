@@ -1,6 +1,12 @@
 /* Estilos globais */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;600&family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body.container {
     background-color: #dcdcdc8e;
     background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><circle cx="5" cy="5" r="0.3" fill="%23ccc" /></svg>');
@@ -8,16 +14,19 @@ body.container {
     font-family: "Open-Sans";
 }
 
+/* ================================== */
+
 /* Estilos para o header */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
     padding: 10px 20px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin-right: 10px;
-    margin-left: 10px;
 }
 
 .title {
@@ -34,10 +43,9 @@ h1[contenteditable="true"] {
     gap: 10px;
 }
 
-/* Estilos para os botões */
+/* Estilos para o botão */
 .publish-button {
     background-color: #2E59D9;
-
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -51,24 +59,55 @@ h1[contenteditable="true"] {
     background-color: #2242A4;
 }
 
-.sidebar {
-    position: fixed;
-    top: 80px;
-    /* Recuo do header */
-    left: 20px;
-    /* Recuo do lado esquerdo */
-    width: 300px;
-    height: calc(100% - 80px);
-    /* Altura do viewport menos recuo superior e inferior */
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 0;
-    overflow: auto;
-    /* Adicione scroll se o conteúdo for maior que a altura */
+/* ================================== */
+
+/* Estilo para os ícones de zoom */
+.zoom-controls {
     display: flex;
     flex-direction: column;
+    position: fixed;
+    gap: 5px;
+    top: 80px;
+    right: 10px;
+}
+
+.zoom-button {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.122);
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #FAFAFA;
+    transition: background-color 0.3s;
+}
+
+.zoom-button:hover {
+    background-color: #E0E0E0;
+}
+
+.zoom-button i {
+    font-size: 20px;
+    color: blue;
+}
+
+/* ================================== */
+
+/* Estilo para os Nav */
+.sidebar {
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    height: calc(100% - 80px);
+    gap: 5px;
+    top: 80px;
+    left: 10px;
+    width: 300px;
     padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    z-index: 0;
+    overflow: auto;
 }
 
 .titulo {
@@ -78,6 +117,7 @@ h1[contenteditable="true"] {
 .sidebar .box {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 .botoes {
@@ -85,47 +125,113 @@ h1[contenteditable="true"] {
     grid-template-columns: 1fr 1fr;
 }
 
-
 .sidebar-button {
+    display: flex;
     width: 93%;
     padding: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.122);
-    /* Adicione a borda preta */
-    border-radius: 10px;
-    /* Adicione o arredondamento da borda */
-    background-color: #FAFAFA;
-    text-align: left;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
     margin-bottom: 12px;
-    font-family: "Open Sans", sans-serif;
+    align-items: center;
+    text-align: left;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.122);
+    cursor: pointer;
+    background-color: #FAFAFA;
+    transition: background-color 0.3s;
     transition: transform 0.3s;
-    /* Adicione um espaço entre os botões */
+}
+
+.sidebar-button:hover {
+    background-color: #E0E0E0;
 }
 
 .sidebar-button.selected {
     position: absolute;
-  }
-  
+}
 
 .sidebar-button i {
     margin-right: 10px;
 }
 
-.sidebar-button:hover {
-    background-color: #E0E0E0;
-    /* Altere a cor de fundo ao passar o mouse */
-}
-
-
+/* ================================== */
 
 /* Estilos para o card inicial*/
 .flow-card-start {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
     width: 250px;
-    height: 120px;
-    background-color: white;
+    gap: 10px;
+    /* Altere para fixed para centralizar */
+    top: 35%;
+    /* Centralize verticalmente */
+    left: 25%;
+    /* Centralize horizontalmente */
+    border: 1px solid #ccc;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Ajustar a sombra */
+    transition: border-color 0.3s;
+    color: #27272a;
+    background: white;
+    cursor: grab;
+    z-index: -1;
+    /* Defina uma camada abaixo dos outros elementos */
+
+    /* Adicione esta parte para o círculo azul */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 80%;
+        right: -8px;
+        /* Posição do círculo à direita do card */
+        transform: translateY(-50%);
+        width: 15px;
+        height: 15px;
+        background-color: #2E59D9;
+        border-radius: 50%;
+        cursor: copy;
+        /* Adicione o cursor de ponteiro */
+        z-index: -1;
+        /* Defina uma camada abaixo dos outros elementos */
+    }
+}
+
+.flow-card-start.active {
+    border-color: #2E59D9;
+    /* Adicionar borda de contorno azul ao card ativo */
+}
+
+.flow-card-sendtext.active {
+    border-color: #2E59D9;
+    /* Adicionar borda de contorno azul ao card ativo */
+}
+
+.fa-circle-play {
+    font-size: 40px;
+    color: #244CC0;
+}
+
+.flow-card-text {
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+/* ================================== */
+
+/* Estilos para o card de Envio de Texto*/
+.card-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.flow-card-sendtext {
+    width: 300px;
+    height: 180px;
+    background: white;
     border: 1px solid #ccc;
     padding: 16px;
     cursor: grab;
@@ -133,7 +239,7 @@ h1[contenteditable="true"] {
     /* Altere para fixed para centralizar */
     top: 35%;
     /* Centralize verticalmente */
-    left: 25%;
+    left: 45%;
     /* Centralize horizontalmente */
     border-radius: 10px;
     /* Bordas arredondadas */
@@ -143,9 +249,7 @@ h1[contenteditable="true"] {
     /* Adicionar transição para suavizar a mudança de cor */
     z-index: -1;
     /* Defina uma camada abaixo dos outros elementos */
-    font-family: "Open Sans", sans-serif;
-    /* Adicione a fonte */
-    font-size: 16px;
+    font-size: 1rem;
     /* Tamanho do texto */
     color: #27272a;
     /* Adicione a cor do texto */
@@ -169,128 +273,37 @@ h1[contenteditable="true"] {
         z-index: -1;
         /* Defina uma camada abaixo dos outros elementos */
     }
-
 }
 
-/* Estilos para os card genéricos*/
-.flow-card {
-    width: 250px;
-    height: 120px;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 16px;
-    cursor: grab;
-    position: fixed;
-    /* Altere para fixed para centralizar */
-    top: 35%;
-    /* Centralize verticalmente */
-    left: 45%;
-    /* Centralize horizontalmente */
-    border-radius: 10px;
-    /* Bordas arredondadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Ajustar a sombra */
-    transition: border-color 0.3s;
-    /* Adicionar transição para suavizar a mudança de cor */
-    z-index: -1;
-    /* Defina uma camada abaixo dos outros elementos */
-    font-family: "Open Sans", sans-serif;
-    /* Adicione a fonte */
-    font-size: 16px;
-    /* Tamanho do texto */
-    color: #27272a;
-    /* Adicione a cor do texto */
-    font-weight: bold;
-    /* Adicione o negrito */
-
-     /* Adicione esta parte para o círculo azul */
-     &::after {
-        content: '';
-        position: absolute;
-        top: 80%;
-        right: -8px;
-        /* Posição do círculo à direita do card */
-        transform: translateY(-50%);
-        width: 15px;
-        height: 15px;
-        background-color: #2E59D9;
-        border-radius: 50%;
-        cursor: copy;
-        /* Adicione o cursor de ponteiro */
-        z-index: -1;
-        /* Defina uma camada abaixo dos outros elementos */
-    }
-
+.card-title {
+    font-size: 1rem;
+    position: relative;
+    /* Adiciona posição relativa */
 }
 
-/* Estilos para o card de Envio de Texto*/
-.flow-card-sendtext {
-    width: 300px;
-    height: 180px;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 16px;
-    cursor: grab;
-    position: fixed;
-    /* Altere para fixed para centralizar */
-    top: 35%;
-    /* Centralize verticalmente */
-    left: 45%;
-    /* Centralize horizontalmente */
-    border-radius: 10px;
-    /* Bordas arredondadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Ajustar a sombra */
-    transition: border-color 0.3s;
-    /* Adicionar transição para suavizar a mudança de cor */
-    z-index: -1;
-    /* Defina uma camada abaixo dos outros elementos */
-    font-family: "Open Sans", sans-serif;
-    /* Adicione a fonte */
-    font-size: 16px;
-    /* Tamanho do texto */
-    color: #27272a;
-    /* Adicione a cor do texto */
-    font-weight: bold;
-    /* Adicione o negrito */
-
-     /* Adicione esta parte para o círculo azul */
-     &::after {
-        content: '';
-        position: absolute;
-        top: 80%;
-        right: -8px;
-        /* Posição do círculo à direita do card */
-        transform: translateY(-50%);
-        width: 15px;
-        height: 15px;
-        background-color: #2E59D9;
-        border-radius: 50%;
-        cursor: copy;
-        /* Adicione o cursor de ponteiro */
-        z-index: -1;
-        /* Defina uma camada abaixo dos outros elementos */
-    }
-
+.card-subtitle {
+    color: #244CC0;
+    font-size: 0.8rem;
+    display: block;
 }
 
 /* Ïcone de Interrogação ao lado do Nome do Card*/
 .question-icon {
+    margin-left: auto;
     font-size: 20px;
-    margin-left: auto; /* Move o ícone para a direita */
-    margin-right: 10px; /* Move o ícone para a esquerda */
-    color: rgb(82, 209, 51); /* Cor inicial do ícone (branco) */
+    color: rgb(82, 209, 51);
+    transition: color 0.3s;
     cursor: pointer;
-    transition: color 0.3s; /* Adiciona uma transição suave na mudança de cor */
 }
 
 .question-icon:hover {
-    color: rgb(153, 207, 140); /* Cor do ícone ao passar o mouse por cima */
+    color: rgb(153, 207, 140);
 }
 
 /* Estilo do ícone de lixeira */
 .delete-icon {
-    display: none; /* Oculta o ícone por padrão */
+    display: none;
+    /* Oculta o ícone por padrão */
 }
 
 /* Estilo do card selecionado com ícone de lixeira visível */
@@ -302,94 +315,4 @@ h1[contenteditable="true"] {
     cursor: pointer;
     display: block;
 }
-
-
-.fa-circle-play {
-    font-size: 40px;
-    /* Ajuste o tamanho conforme necessário */
-    color: #244CC0;
-    margin-left: 10px;
-
-}
-
-.flow-card-start.active {
-    border-color: #2E59D9;
-    /* Adicionar borda de contorno azul ao card ativo */
-}
-
-.flow-card-sendtext.active {
-    border-color: #2E59D9;
-    /* Adicionar borda de contorno azul ao card ativo */
-}
-
-.flow-card-text {
-    margin-top: 15px;
-    margin-left: 9px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 12px;
-    line-height: 1.5;
-    
-}
-
-.card-title {
-    font-family: "Open Sans";
-    font-size: 16px;
-    position: relative; /* Adiciona posição relativa */
-}
-
-.card-subtitle{
-    color: #244CC0;
-    font-family: "Montserrat", sans-serif;
-    font-size: 13px;
-    display: block; /* Adiciona essa linha para torná-lo um bloco */
-   
-    
-}
-
-.card-group {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px;
-    
-}
-
-.icon-blue {
-    color: #244CC0;
-}
-
-.icon-orange {
-    color: #e67200;
-}
-
-
-/* Estilo para os ícones de zoom */
-.zoom-controls {
-    position: fixed;
-    top: 70px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.zoom-button {
-    background-color: #FAFAFA;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin: 5px 0;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border: 1px solid rgba(0, 0, 0, 0.122);
-}
-
-.zoom-button:hover {
-    background-color: #E0E0E0;
-}
-
-.zoom-button i {
-    font-size: 20px;
-    color: blue;
-}
-
+/* ================================== */
