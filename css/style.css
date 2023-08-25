@@ -12,6 +12,8 @@ body.container {
     background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><circle cx="5" cy="5" r="0.3" fill="%23ccc" /></svg>');
     background-size: 40px 40px;
     font-family: "Open-Sans";
+    background-color: #dcdcdc8e;
+    
 }
 
 /* ================================== */
@@ -214,9 +216,38 @@ h1[contenteditable="true"] {
     color: #244CC0;
 }
 
+/*Cículo azul ao lado do Nome do Card.*/
+.fa-comments {
+    font-size: 18px;
+    color: #ffffff;
+
+}
+
+.circle-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #2E59D9;
+    color: white;
+  }
+
 .flow-card-text {
     font-size: 0.8rem;
     line-height: 1.5;
+}
+
+.icon-blue{
+    color: #244CC0;
+}
+
+.icon-orange{
+    color: #f37b0b;
+}
+.icon-purple{
+    color: #800080;
 }
 /* ================================== */
 
@@ -229,6 +260,8 @@ h1[contenteditable="true"] {
 }
 
 .flow-card-sendtext {
+    z-index: -1;
+    /* Defina uma camada abaixo dos outros elementos */
     width: 300px;
     height: 180px;
     background: white;
@@ -247,8 +280,6 @@ h1[contenteditable="true"] {
     /* Ajustar a sombra */
     transition: border-color 0.3s;
     /* Adicionar transição para suavizar a mudança de cor */
-    z-index: -1;
-    /* Defina uma camada abaixo dos outros elementos */
     font-size: 1rem;
     /* Tamanho do texto */
     color: #27272a;

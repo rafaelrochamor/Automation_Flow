@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const fluxoTitle = document.querySelector('.title h1');
   const publishButton = document.querySelector('.publish-button');
 
-  
+
   inicioFluxo.addEventListener('mousedown', e => {
     if (e.button !== 0) return;
 
@@ -94,36 +94,70 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* Adiciona o Card de Envio de Texto na tela com 2 cliques*/
-  let clickCount = 0;
 
-  document.querySelector(".sidebar-button").addEventListener("click", function () {
-    clickCount++;
-    if (clickCount === 2) {
-      const newCard = createNewCard();
-      document.body.appendChild(newCard); // Adicione o novo card ao body
-      clickCount = 0; // Reset do contador
+
+
+  /* Arrasta o botão na tela e permite soltar em qualquer lugar*/
+  document.addEventListener("drag", function (event) {
+    event.preventDefault();
+  });
+
+  document.addEventListener("dragstart", function (event) {
+    if (event.target.classList.contains("sidebar-button")) {
+      event.target.classList.add("dragging");
     }
   });
 
+  document.addEventListener("dragend", function (event) {
+    if (event.target.classList.contains("sidebar-button")) {
+      event.target.classList.remove("dragging");
+    }
+  });
+
+  document.addEventListener("dragover", function (event) {
+    event.preventDefault();
+  });
+
+  document.addEventListener("drop", function (event) {
+    event.preventDefault();
+    const draggedButton = document.querySelector(".sidebar-button.dragging");
+    const cardsContainer = document.querySelector(".cards-container");
+
+    if (draggedButton && !event.target.closest(".sidebar")) {
+      const newCard = createNewCard();
+      const containerRect = cardsContainer.getBoundingClientRect();
+
+      const offsetX = event.clientX - containerRect.left;
+      const offsetY = event.clientY - containerRect.top;
+
+      newCard.style.left = offsetX + "px";
+      newCard.style.top = offsetY + "px";
+
+      cardsContainer.appendChild(newCard);
+    }
+  });
+
+
+  /*Cria o card de Envio de Texto*/
   function createNewCard() {
     const newCard = document.createElement("div");
     newCard.className = "flow-card-sendtext";
     newCard.innerHTML = `
-        <div class="card-group">
-        <i class="fa-regular fa-circle-play"></i> 
-        <div style="display: flex; flex-direction:column; gap: 5px;">
-        <span class="card-title"> Enviar Mensagem</span>
-        <span class="card-subtitle"> Texto</span>
-        </div>
-        <i class="fa-regular fa-circle-question question-icon"></i>
-        
-        <textarea id="textarea" name="textarea" rows="8" cols="50" style="height: 100px; border: 1px solid #ccc;"></textarea>
-        
-        <!-- Ícone de lixeira oculto por padrão -->
-        <i class="fa-solid fa-trash-alt delete-icon" style="display: none;"></i>     
-      `;
-
+      <div class="card-group">
+      <div class="circle-icon">
+      <i class="fa-regular fa-comments"></i>
+      </div>
+      <div style="display: flex; flex-direction:column; gap: 5px;">
+      <span class="card-title"> Enviar Mensagem</span>
+      <span class="card-subtitle"> Texto</span>
+      </div>
+      <i class="fa-regular fa-circle-question question-icon" ></i>
+      
+      <textarea id="textarea" name="textarea" rows="8" cols="50" style="height: 100px; border: 1px solid #ccc;"></textarea>
+      
+      <!-- Ícone de lixeira oculto por padrão -->
+      <i class="fa-solid fa-trash-alt delete-icon" style="display: none;"></i>     
+    `;
     return newCard;
   }
 
@@ -198,8 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /*Aplica o Zoom nos Cards*/
   const zoomInButton = document.querySelector('.zoom-in');
   const zoomOutButton = document.querySelector('.zoom-out');
-  const flowCardStart = document.querySelector('.flow-card-start');
-  const flowCardSendText = document.querySelector('.flow-card-sendtext');
+  const cardsContainer = document.querySelector('.cards-container');
 
   let currentScale = 1; // Valor inicial da escala
   const maxZooms = 5; // Máximo de zooms permitidos
@@ -219,9 +252,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function applyZoom(scale) {
-    flowCardStart.style.transform = `scale(${scale})`; // Aplica a nova escala ao card de início
-    flowCardSendText.style.transform = `scale(${scale})`; // Aplica a nova escala ao card de envio de texto
+    const cards = cardsContainer.querySelectorAll('.flow-card-sendtext, .flow-card-start'); /*Deve ser adicionado cada card nessa linha*/
+
+    cards.forEach(card => {
+      card.style.transform = `scale(${scale})`; // Aplica o zoom a cada card
+    });
   }
+  
 
 
 });
