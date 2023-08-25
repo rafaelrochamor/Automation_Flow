@@ -260,6 +260,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   
 
+/* Executa o CSS do cadeado para abrir e fechar */ 
+const lockButton = document.getElementById("lockButton");
+const lockIcon = document.getElementById("lockIcon");
+const sidebar = document.querySelector(".sidebar");
+
+let isLocked = false;
+
+lockButton.addEventListener("click", toggleSidebarLock);
+
+function toggleSidebarLock() {
+  isLocked = !isLocked;
+
+  if (isLocked) {
+    lockIcon.classList.remove("fa-lock");
+    lockIcon.classList.add("fa-unlock");
+    sidebar.classList.add("locked");
+    sidebar.style.transform = "translateX(-90%)"; /*Move o sidebar para a esquerda para escondê-lo*/
+  } else {
+    lockIcon.classList.remove("fa-unlock");
+    lockIcon.classList.add("fa-lock");
+    sidebar.classList.remove("locked");
+    sidebar.style.transform = "translateX(0)"; // Move o sidebar de volta para a posição original
+  }
+}
+
+
+
 
 });
 

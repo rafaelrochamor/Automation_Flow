@@ -13,7 +13,7 @@ body.container {
     background-size: 40px 40px;
     font-family: "Open-Sans";
     background-color: #dcdcdc8e;
-    
+
 }
 
 /* ================================== */
@@ -113,6 +113,7 @@ h1[contenteditable="true"] {
 }
 
 .titulo {
+    margin-top: 20px;
     font-weight: bold;
 }
 
@@ -129,6 +130,7 @@ h1[contenteditable="true"] {
 
 .sidebar-button {
     display: flex;
+    font-family: "Open-Sans";
     width: 93%;
     padding: 10px;
     margin-bottom: 12px;
@@ -232,23 +234,25 @@ h1[contenteditable="true"] {
     border-radius: 50%;
     background-color: #2E59D9;
     color: white;
-  }
+}
 
 .flow-card-text {
     font-size: 0.8rem;
     line-height: 1.5;
 }
 
-.icon-blue{
+.icon-blue {
     color: #244CC0;
 }
 
-.icon-orange{
+.icon-orange {
     color: #f37b0b;
 }
-.icon-purple{
+
+.icon-purple {
     color: #800080;
 }
+
 /* ================================== */
 
 /* Estilos para o card de Envio de Texto*/
@@ -346,4 +350,44 @@ h1[contenteditable="true"] {
     cursor: pointer;
     display: block;
 }
+
+
+.lock-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    /* Bordas arredondadas */
+    border: none;
+    /* Remover a borda padrão */
+    cursor: pointer;
+
+}
+
+#lockIcon {
+    font-size: 16px;
+    display: inline-block;
+    /* Para ajustar o espaçamento vertical */
+    vertical-align: middle;
+    /* Centralizar verticalmente */
+}
+
+.lock-button:hover {
+    background-color: #999;
+    /* Cor do botão ao passar o mouse */
+}
+
+
+.sidebar.minimized {
+    width: 50px;
+    /* Largura mínima após minimização */
+}
+
+
+
 /* ================================== */
