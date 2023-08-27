@@ -370,7 +370,7 @@ h1[contenteditable="true"] {
 }
 
 #lockIcon {
-    font-size: 16px;
+    font-size: 18px;
     display: inline-block;
     /* Para ajustar o espaçamento vertical */
     vertical-align: middle;
@@ -383,11 +383,40 @@ h1[contenteditable="true"] {
 }
 
 
+.maximize-button{
+    margin-top: 300px;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    border: none;
+    border-radius: 100%;
+    /* Bordas arredondadas */
+    position: absolute
+
+
+}
+
+#maximizedIcon {
+    font-size: 18px;
+    display: inline-block;
+    /* Para ajustar o espaçamento vertical */
+    vertical-align: middle;
+    /* Centralizar verticalmente */
+}
+
+.maximize-button:hover {
+    background-color: #999;
+    /* Cor do botão ao passar o mouse */
+}
+
+
 .sidebar.minimized {
     width: 50px;
     /* Largura mínima após minimização */
 }
-
-
 
 /* ================================== */

@@ -58,60 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  /* Função para selecionar e arrastar na tela*/
-  let isDragging = false;
-  let initialX, initialY;
-
-  function toggleSelected(button) {
-    button.classList.toggle("selected");
-  }
-
-  document.addEventListener("dragstart", function (event) {
-    if (event.target.classList.contains("sidebar-button")) {
-      isDragging = true;
-      initialX = event.clientX;
-      initialY = event.clientY;
-    }
-  });
-
-  document.addEventListener("dragend", function (event) {
-    isDragging = false;
-  });
-
-  document.addEventListener("dragover", function (event) {
-    event.preventDefault();
-    if (isDragging) {
-      const deltaX = event.clientX - initialX;
-      const deltaY = event.clientY - initialY;
-      initialX = event.clientX;
-      initialY = event.clientY;
-      const button = document.querySelector(".sidebar-button.selected");
-      if (button) {
-        const rect = button.getBoundingClientRect();
-        button.style.top = rect.top + deltaY + "px";
-        button.style.left = rect.left + deltaX + "px";
-      }
-    }
-  });
-
-
-
-
-  /* Arrasta o botão na tela e permite soltar em qualquer lugar*/
+  /* Arrasta o botão com o ID "buttontext" na tela e permite soltar em qualquer lugar */
   document.addEventListener("drag", function (event) {
     event.preventDefault();
-  });
-
-  document.addEventListener("dragstart", function (event) {
-    if (event.target.classList.contains("sidebar-button")) {
-      event.target.classList.add("dragging");
-    }
-  });
-
-  document.addEventListener("dragend", function (event) {
-    if (event.target.classList.contains("sidebar-button")) {
-      event.target.classList.remove("dragging");
-    }
   });
 
   document.addEventListener("dragover", function (event) {
@@ -120,10 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener("drop", function (event) {
     event.preventDefault();
-    const draggedButton = document.querySelector(".sidebar-button.dragging");
+    const draggedButton = document.getElementById("buttontext");
     const cardsContainer = document.querySelector(".cards-container");
 
-    if (draggedButton && !event.target.closest(".sidebar")) {
+    if (draggedButton && event.target !== draggedButton) {
+      // Create a new card only if the target is not the dragged button itself
       const newCard = createNewCard();
       const containerRect = cardsContainer.getBoundingClientRect();
 
@@ -137,27 +87,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-
-  /*Cria o card de Envio de Texto*/
+  /* Cria o card de Envio de Texto */
   function createNewCard() {
     const newCard = document.createElement("div");
     newCard.className = "flow-card-sendtext";
     newCard.innerHTML = `
-      <div class="card-group">
-      <div class="circle-icon">
-      <i class="fa-regular fa-comments"></i>
-      </div>
-      <div style="display: flex; flex-direction:column; gap: 5px;">
-      <span class="card-title"> Enviar Mensagem</span>
-      <span class="card-subtitle"> Texto</span>
-      </div>
-      <i class="fa-regular fa-circle-question question-icon" ></i>
-      
-      <textarea id="textarea" name="textarea" rows="8" cols="50" style="height: 100px; border: 1px solid #ccc;"></textarea>
-      
-      <!-- Ícone de lixeira oculto por padrão -->
-      <i class="fa-solid fa-trash-alt delete-icon" style="display: none;"></i>     
-    `;
+    <div class="card-group">
+    <div class="circle-icon">
+    <i class="fa-regular fa-comments"></i>
+    </div>
+    <div style="display: flex; flex-direction:column; gap: 5px;">
+    <span class="card-title"> Enviar Mensagem</span>
+    <span class="card-subtitle"> Texto</span>
+    </div>
+    <i class="fa-regular fa-circle-question question-icon" ></i>
+    
+    <textarea id="textarea" name="textarea" rows="8" cols="50" style="height: 100px; border: 1px solid #ccc;"></textarea>
+    
+    <!-- Ícone de lixeira oculto por padrão -->
+    <i class="fa-solid fa-trash-alt delete-icon" style="display: none;"></i>     
+  `;
     return newCard;
   }
 
@@ -258,33 +207,55 @@ document.addEventListener('DOMContentLoaded', () => {
       card.style.transform = `scale(${scale})`; // Aplica o zoom a cada card
     });
   }
+
   
+  //Fecha e abre o Sidebar
+  const lockButton = document.getElementById("lockButton");
+  const lockIcon = document.getElementById("lockIcon");
+  const sidebar = document.querySelector(".sidebar");
+  const maximizeButton = document.createElement("button"); // Cria o botão
 
-/* Executa o CSS do cadeado para abrir e fechar */ 
-const lockButton = document.getElementById("lockButton");
-const lockIcon = document.getElementById("lockIcon");
-const sidebar = document.querySelector(".sidebar");
+  maximizeButton.innerHTML = ` 
+<i class="fa-solid fa-chevron-right" id="maximizedIcon"></i>
+`;
 
-let isLocked = false;
+  maximizeButton.className = "maximize-button"; // Adiciona a classe unlock-button
+  maximizeButton.style.display = "none"; // Esconde o botão de maximizar
 
-lockButton.addEventListener("click", toggleSidebarLock);
+  document.body.appendChild(maximizeButton); // Adiciona o botão ao body
 
-function toggleSidebarLock() {
-  isLocked = !isLocked;
+  let isLocked = false;
 
-  if (isLocked) {
-    lockIcon.classList.remove("fa-lock");
-    lockIcon.classList.add("fa-unlock");
-    sidebar.classList.add("locked");
-    sidebar.style.transform = "translateX(-90%)"; /*Move o sidebar para a esquerda para escondê-lo*/
-  } else {
+  lockButton.addEventListener("click", toggleSidebarLock);
+
+  function toggleSidebarLock() {
+    isLocked = !isLocked;
+
+    if (isLocked) {
+      lockIcon.classList.remove("fa-lock");
+      lockIcon.classList.add("fa-unlock");
+      sidebar.classList.add("locked");
+      sidebar.style.transform = "translateX(-100%)"; // Move o sidebar para a esquerda para escondê-lo
+      maximizeButton.style.display = "block"; // Mostra o botão de maximizar
+    } else {
+      lockIcon.classList.remove("fa-unlock");
+      lockIcon.classList.add("fa-lock");
+      sidebar.classList.remove("locked");
+      sidebar.style.transform = "translateX(0)"; // Move o sidebar de volta para a posição original
+      maximizeButton.style.display = "none"; // Esconde o botão de maximizar
+    }
+  }
+
+  maximizeButton.addEventListener("click", maximizeSidebar); // Adiciona o evento de clique ao botão de maximizar
+
+  function maximizeSidebar() {
+    sidebar.style.transform = "translateX(0)"; // Move o sidebar de volta para a posição original
+    maximizeButton.style.display = "none"; // Esconde o botão de maximizar
+    isLocked = false; // Reseta o estado do sidebar
     lockIcon.classList.remove("fa-unlock");
     lockIcon.classList.add("fa-lock");
     sidebar.classList.remove("locked");
-    sidebar.style.transform = "translateX(0)"; // Move o sidebar de volta para a posição original
   }
-}
-
 
 
 
