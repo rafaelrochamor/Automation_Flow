@@ -265,4 +265,29 @@ h1[contenteditable="true"] {
     /* Largura mínima após minimização */
 }
 
+/* Seta dentro do cart de Texto*/
+.arrow-icon {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: white; /* Cor do fundo do círculo */
+    border: 1px solid #ccc; /* Borda do círculo */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.arrow-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: solid transparent;
+    border-width: 4px 0 4px 8px;
+    border-left-color: #494949; /* Cor da seta */
+    transform: translate(-50%, -50%);
+}
+
 /* ================================== */

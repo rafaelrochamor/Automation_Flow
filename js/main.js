@@ -92,23 +92,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const newCard = document.createElement("div");
     newCard.className = "flow-card-sendtext";
     newCard.innerHTML = `
-    <div class="card-group">
-    <div class="circle-icon">
-    <i class="fa-regular fa-comments"></i>
+    <div class="card-header">
+      <div class="icon">
+        <i class="fa-regular fa-comment-dots"></i>
+      </div>
+      <div class="card-title">
+        Enviar mensagem
+        <span class="card-subtitle">Texto</span>
+      </div>
     </div>
-    <div style="display: flex; flex-direction:column; gap: 5px;">
-    <span class="card-title"> Enviar Mensagem</span>
-    <span class="card-subtitle"> Texto</span>
+    <div class="card-body">
+      <div class="message-input">
+         <i class="arrow-icon"></i>
+     
+        <input type="text" placeholder="Digite @ para utilizar as variáveis">
+      </div>
     </div>
-    <i class="fa-regular fa-circle-question question-icon" ></i>
-    
-    <textarea id="textarea" name="textarea" rows="8" cols="50" style="height: 100px; border: 1px solid #ccc;"></textarea>
-    
+    <div class="card-footer">
+      <div class="status">
+        <i class="fa-regular fa-clock"></i>
+        <span>Status digitando</span>
+        <span>0 <i class="fa-solid fa-chevron-down"></i> segundos</span>
+      </div>
+      <div class="next-step">
+        Próximo passo
+      </div>
+    </div>
     <!-- Ícone de lixeira oculto por padrão -->
     <i class="fa-solid fa-trash-alt delete-icon" style="display: none;"></i>     
   `;
     return newCard;
   }
+
 
   /* Move o Card de Envio de texto pela Tela */
 
@@ -149,15 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
-
-
-
-
-
-
-
-
-
 
 
   /*Add a borda azul do card de Envio de texto*/
@@ -274,7 +280,6 @@ document.addEventListener('DOMContentLoaded', () => {
     lockIcon.classList.add("fa-lock");
     sidebar.classList.remove("locked");
   }
-
 
   ___________________
 

@@ -69,33 +69,20 @@
 }
 
 .flow-card-sendtext {
-    z-index: -1;
-    /* Defina uma camada abaixo dos outros elementos */
+    z-index: 1;
     width: 300px;
-    height: 180px;
     background: white;
     border: 1px solid #ccc;
     padding: 16px;
     cursor: grab;
-    position: fixed;
-    /* Altere para fixed para centralizar */
-    top: 35%;
-    /* Centralize verticalmente */
-    left: 45%;
-    /* Centralize horizontalmente */
+    position: absolute;
     border-radius: 10px;
-    /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Ajustar a sombra */
     transition: border-color 0.3s;
-    /* Adicionar transição para suavizar a mudança de cor */
     font-size: 1rem;
-    /* Tamanho do texto */
     color: #27272a;
-    /* Adicione a cor do texto */
     font-weight: bold;
-    /* Adicione o negrito */
-
+    font-family: 'Open Sans', sans-serif;
     /* Adicione esta parte para o círculo azul */
     &::after {
         content: '';
@@ -112,7 +99,93 @@
         /* Adicione o cursor de ponteiro */
         z-index: -1;
         /* Defina uma camada abaixo dos outros elementos */
+
     }
+}
+
+.flow-card-sendtext .card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.flow-card-sendtext .card-header .icon {
+    background: #2E59D9;
+    color: white;
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flow-card-sendtext .card-header .icon i {
+    font-size: 24px;
+}
+
+.flow-card-sendtext .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.flow-card-sendtext .card-subtitle {
+    display: block;
+    font-size: 14px;
+    color: #2E59D9;
+}
+
+.flow-card-sendtext .card-body {
+    margin-bottom: 8px;
+}
+
+.flow-card-sendtext .message-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px;
+    background: #f9f9f9;
+}
+
+.flow-card-sendtext .message-input i {
+    color: #ccc;
+    margin-right: 8px;
+}
+
+.flow-card-sendtext .message-input input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    background: transparent;
+}
+
+.flow-card-sendtext .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.flow-card-sendtext .status {
+    display: flex;
+    align-items: center;
+}
+
+.flow-card-sendtext .status i {
+    margin-right: 4px;
+}
+
+.flow-card-sendtext .status span {
+    margin-right: 4px;
+}
+
+.flow-card-sendtext .next-step {
+    color: #00bfa6;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .card-title {
