@@ -111,36 +111,54 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* Move o Card de Envio de texto pela Tela */
-  function activateElement(element) {
-    activeElement = element;
-    offsetX = event.clientX - activeElement.getBoundingClientRect().left;
-    offsetY = event.clientY - activeElement.getBoundingClientRect().top;
-    activeElement.style.zIndex = 1; // Trazer o elemento para frente
-    activeElement.style.cursor = "grabbing"; // Mudar o cursor para "grabbing"
-  }
 
-  document.addEventListener("mousedown", function (event) {
-    if (event.target.closest(".flow-card-sendtext")) {
-      activateElement(event.target.closest(".flow-card-sendtext"));
+  document.addEventListener('DOMContentLoaded', () => {
+    let activeElement = null;
+    let offsetX, offsetY;
+    let highestZIndex = 1; // Inicializando o maior valor de z-index
+
+    function activateElement(element, event) {
+      activeElement = element;
+      offsetX = event.clientX - activeElement.getBoundingClientRect().left;
+      offsetY = event.clientY - activeElement.getBoundingClientRect().top;
+      highestZIndex++; // Incrementa o maior z-index
+      activeElement.style.zIndex = highestZIndex; // Define o z-index mais alto para o elemento ativo
+      activeElement.style.cursor = "grabbing"; // Muda o cursor para "grabbing"
     }
+
+    document.addEventListener("mousedown", function (event) {
+      const targetCard = event.target.closest(".flow-card-sendtext, .flow-card-start");
+      if (targetCard) {
+        activateElement(targetCard, event);
+      }
+    });
+
+    document.addEventListener("mousemove", function (event) {
+      if (activeElement) {
+        const x = event.clientX - offsetX;
+        const y = event.clientY - offsetY;
+        activeElement.style.left = `${x}px`;
+        activeElement.style.top = `${y}px`;
+      }
+    });
+
+    document.addEventListener("mouseup", function () {
+      if (activeElement) {
+        activeElement.style.cursor = "grab"; // Restaurar o cursor padrão
+        activeElement = null;
+      }
+    });
   });
 
-  document.addEventListener("mousemove", function (event) {
-    if (activeElement) {
-      var x = event.clientX - offsetX;
-      var y = event.clientY - offsetY;
-      activeElement.style.left = x + "px";
-      activeElement.style.top = y + "px";
-    }
-  });
 
-  document.addEventListener("mouseup", function () {
-    if (activeElement) {
-      activeElement.style.zIndex = -1; // Retornar ao z-index original
-      activeElement.style.cursor = "grab"; // Restaurar o cursor padrão
-      activeElement = null;
-    }
-  });
+
+
+
+
+
+
+
+
 
   /*Add a borda azul do card de Envio de texto*/
   document.addEventListener("mousedown", function (event) {
@@ -257,6 +275,8 @@ document.addEventListener('DOMContentLoaded', () => {
     sidebar.classList.remove("locked");
   }
 
+
+  ___________________
 
 
 });

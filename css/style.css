@@ -158,60 +158,6 @@ h1[contenteditable="true"] {
 
 /* ================================== */
 
-/* Estilos para o card inicial*/
-.flow-card-start {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    width: 250px;
-    gap: 10px;
-    /* Altere para fixed para centralizar */
-    top: 35%;
-    /* Centralize verticalmente */
-    left: 25%;
-    /* Centralize horizontalmente */
-    border: 1px solid #ccc;
-    padding: 15px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Ajustar a sombra */
-    transition: border-color 0.3s;
-    color: #27272a;
-    background: white;
-    cursor: grab;
-    z-index: -1;
-    /* Defina uma camada abaixo dos outros elementos */
-
-    /* Adicione esta parte para o círculo azul */
-    &::after {
-        content: '';
-        position: absolute;
-        top: 80%;
-        right: -8px;
-        /* Posição do círculo à direita do card */
-        transform: translateY(-50%);
-        width: 15px;
-        height: 15px;
-        background-color: #2E59D9;
-        border-radius: 50%;
-        cursor: copy;
-        /* Adicione o cursor de ponteiro */
-        z-index: -1;
-        /* Defina uma camada abaixo dos outros elementos */
-    }
-}
-
-.flow-card-start.active {
-    border-color: #2E59D9;
-    /* Adicionar borda de contorno azul ao card ativo */
-}
-
-.flow-card-sendtext.active {
-    border-color: #2E59D9;
-    /* Adicionar borda de contorno azul ao card ativo */
-}
 
 .fa-circle-play {
     font-size: 40px;
@@ -236,10 +182,7 @@ h1[contenteditable="true"] {
     color: white;
 }
 
-.flow-card-text {
-    font-size: 0.8rem;
-    line-height: 1.5;
-}
+
 
 .icon-blue {
     color: #244CC0;
@@ -254,103 +197,6 @@ h1[contenteditable="true"] {
 }
 
 /* ================================== */
-
-/* Estilos para o card de Envio de Texto*/
-.card-group {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-}
-
-.flow-card-sendtext {
-    z-index: -1;
-    /* Defina uma camada abaixo dos outros elementos */
-    width: 300px;
-    height: 180px;
-    background: white;
-    border: 1px solid #ccc;
-    padding: 16px;
-    cursor: grab;
-    position: fixed;
-    /* Altere para fixed para centralizar */
-    top: 35%;
-    /* Centralize verticalmente */
-    left: 45%;
-    /* Centralize horizontalmente */
-    border-radius: 10px;
-    /* Bordas arredondadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Ajustar a sombra */
-    transition: border-color 0.3s;
-    /* Adicionar transição para suavizar a mudança de cor */
-    font-size: 1rem;
-    /* Tamanho do texto */
-    color: #27272a;
-    /* Adicione a cor do texto */
-    font-weight: bold;
-    /* Adicione o negrito */
-
-    /* Adicione esta parte para o círculo azul */
-    &::after {
-        content: '';
-        position: absolute;
-        top: 80%;
-        right: -8px;
-        /* Posição do círculo à direita do card */
-        transform: translateY(-50%);
-        width: 15px;
-        height: 15px;
-        background-color: #2E59D9;
-        border-radius: 50%;
-        cursor: copy;
-        /* Adicione o cursor de ponteiro */
-        z-index: -1;
-        /* Defina uma camada abaixo dos outros elementos */
-    }
-}
-
-.card-title {
-    font-size: 1rem;
-    position: relative;
-    /* Adiciona posição relativa */
-}
-
-.card-subtitle {
-    color: #244CC0;
-    font-size: 0.8rem;
-    display: block;
-}
-
-/* Ïcone de Interrogação ao lado do Nome do Card*/
-.question-icon {
-    margin-left: auto;
-    font-size: 20px;
-    color: rgb(82, 209, 51);
-    transition: color 0.3s;
-    cursor: pointer;
-}
-
-.question-icon:hover {
-    color: rgb(153, 207, 140);
-}
-
-/* Estilo do ícone de lixeira */
-.delete-icon {
-    display: none;
-    /* Oculta o ícone por padrão */
-}
-
-/* Estilo do card selecionado com ícone de lixeira visível */
-.flow-card-sendtext.active .delete-icon {
-    position: absolute;
-    top: -20px;
-    right: 10px;
-    color: red;
-    cursor: pointer;
-    display: block;
-}
-
 
 .lock-button {
     position: absolute;
